@@ -8,7 +8,56 @@
       name="description"
       content="Aiyi Massage in der Bennogasse 23, 1080 Wien: Thai Massage, Paarmassage, Rückenmassage, Fußmassage und Termin-Anfrage."
     />
+    <link rel="canonical" href="https://paulito09.github.io/massage-studio-website/" />
+    <meta name="theme-color" content="#6f8464" />
+    <meta property="og:title" content="Aiyi Massage | Massage in 1080 Wien" />
+    <meta
+      property="og:description"
+      content="Thai Massage, Paarmassage und gezielte Massage für Rücken, Nacken und Füße in der Bennogasse 23."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://paulito09.github.io/massage-studio-website/" />
+    <meta property="og:locale" content="de_AT" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://images.pexels.com" />
+    <link rel="preconnect" href="https://www.google.com" />
+    <link rel="dns-prefetch" href="https://images.pexels.com" />
     <link rel="stylesheet" href="../shared/demo.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HealthAndBeautyBusiness",
+        "name": "Aiyi Massage",
+        "url": "https://paulito09.github.io/massage-studio-website/",
+        "telephone": "+4367763145376",
+        "email": "monathaivienna@gmail.com",
+        "priceRange": "Preis auf Anfrage",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Bennogasse 23",
+          "postalCode": "1080",
+          "addressLocality": "Wien",
+          "addressCountry": "AT"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
+            "opens": "09:00",
+            "closes": "20:00"
+          }
+        ],
+        "sameAs": ["https://www.treatwell.at/ort/aiyi-massage/"]
+      }
+    </script>
     <style>
       :root {
         --brand: #6f8464;
@@ -45,12 +94,44 @@
         box-shadow: 0 16px 28px rgba(31, 40, 34, 0.2);
       }
 
+      .button:focus-visible,
+      a:focus-visible,
+      input:focus-visible,
+      select:focus-visible,
+      textarea:focus-visible,
+      button:focus-visible {
+        outline: 3px solid rgba(191, 139, 82, 0.72);
+        outline-offset: 3px;
+      }
+
       .button.call {
         background: #2b3a31;
       }
 
       .button.whatsapp {
         background: #2d7b57;
+      }
+
+      .button.email {
+        background: #70553d;
+      }
+
+      .skip-link {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 100;
+        transform: translateY(-150%);
+        border-radius: 6px;
+        padding: 10px 14px;
+        background: #fffdf8;
+        color: var(--brand-dark);
+        font-weight: 760;
+        box-shadow: var(--shadow);
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
       }
 
       .hero {
@@ -262,6 +343,26 @@
         font-size: 0.92rem;
       }
 
+      .form-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .form-status a {
+        color: #2d7b57;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .hp-field {
+        position: absolute;
+        left: -9999px;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
+
       .contact-grid {
         grid-template-columns: minmax(310px, 0.74fr) minmax(360px, 1.26fr);
         align-items: stretch;
@@ -279,7 +380,7 @@
 
       .contact-actions {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(3, 1fr);
         gap: 10px;
         margin-top: 12px;
       }
@@ -294,10 +395,17 @@
 
       .map-wrap .map {
         width: 100%;
-        height: 100%;
+        height: calc(100% - 44px);
         min-height: 430px;
         border-radius: 0;
         filter: saturate(0.88) contrast(0.96);
+      }
+
+      .map-caption {
+        padding: 12px 14px;
+        background: #fffdf8;
+        color: var(--muted);
+        font-size: 0.92rem;
       }
 
       .mobile-cta {
@@ -397,6 +505,10 @@
           min-height: 320px;
         }
 
+        .map-caption {
+          padding-bottom: 14px;
+        }
+
         .mobile-cta {
           display: grid;
         }
@@ -427,6 +539,7 @@
     </style>
   </head>
   <body>
+    <a class="skip-link" href="#termin">Direkt zur Termin-Anfrage</a>
     <header class="topbar">
       <a class="brand" href="#start">
         <strong>Aiyi Massage</strong>
@@ -456,7 +569,7 @@
           </p>
           <div class="actions">
             <a class="button primary" href="#termin">Termin anfragen</a>
-            <a class="button call" href="tel:+4367763145376">Direkt anrufen</a>
+            <a class="button call" href="tel:+4367763145376" aria-label="Aiyi Massage telefonisch anrufen">Direkt anrufen</a>
             <a
               class="button secondary"
               href="https://www.treatwell.at/ort/aiyi-massage/"
@@ -655,7 +768,7 @@
             </p>
             <div class="actions">
               <a class="button primary" href="#booking-form">Termin anfragen</a>
-              <a class="button call" href="tel:+4367763145376">Direkt anrufen</a>
+              <a class="button call" href="tel:+4367763145376" aria-label="Aiyi Massage telefonisch anrufen">Direkt anrufen</a>
               <a
                 class="button whatsapp"
                 href="https://wa.me/4367763145376?text=Hallo%20Aiyi%20Massage%2C%20ich%20m%C3%B6chte%20gerne%20einen%20Termin%20anfragen."
@@ -671,6 +784,10 @@
               Termin wird telefonisch bestätigt.
             </p>
             <form id="booking-form" class="demo-form">
+              <label class="hp-field" aria-hidden="true">
+                Website
+                <input name="Website" tabindex="-1" autocomplete="off" />
+              </label>
               <div class="field-row">
                 <label>
                   Name
@@ -699,8 +816,18 @@
                 Optional: Nennen Sie einfach den Körperbereich und ob die Massage
                 sanft, mittel oder kräftig sein soll.
               </p>
-              <button class="button primary" type="submit">Terminwunsch senden</button>
-              <p class="form-status">Danke, der Terminwunsch wurde vorgemerkt.</p>
+              <div class="form-actions">
+                <button class="button primary" type="submit">Terminwunsch per WhatsApp senden</button>
+                <a
+                  id="email-fallback"
+                  class="button email"
+                  href="mailto:monathaivienna@gmail.com?subject=Terminwunsch%20Aiyi%20Massage"
+                  >Per E-Mail anfragen</a
+                >
+              </div>
+              <p class="form-status" aria-live="polite">
+                Danke, der Terminwunsch wurde vorbereitet.
+              </p>
             </form>
           </div>
         </div>
@@ -712,10 +839,18 @@
             <h2>Kontakt & Anfahrt</h2>
             <p><strong>Adresse</strong><br />Bennogasse 23, 1080 Wien</p>
             <p><strong>Telefon</strong><br /><a href="tel:+4367763145376">0677 63145376</a></p>
+            <p><strong>E-Mail</strong><br /><a href="mailto:monathaivienna@gmail.com">monathaivienna@gmail.com</a></p>
             <p><strong>Öffnungszeiten</strong><br />Mo bis So 09:00 bis 20:00</p>
             <p><strong>Nähe</strong><br />U6 Alser Straße und Josefstadt</p>
             <div class="contact-actions">
               <a class="button call" href="tel:+4367763145376">Anrufen</a>
+              <a
+                class="button whatsapp"
+                href="https://wa.me/4367763145376?text=Hallo%20Aiyi%20Massage%2C%20ich%20m%C3%B6chte%20gerne%20einen%20Termin%20anfragen."
+                target="_blank"
+                rel="noreferrer"
+                >WhatsApp</a
+              >
               <a
                 class="button secondary"
                 href="https://www.google.com/maps/search/?api=1&query=Bennogasse%2023%201080%20Wien"
@@ -732,6 +867,7 @@
               src="https://www.google.com/maps?q=Bennogasse%2023%201080%20Wien&output=embed"
               loading="lazy"
             ></iframe>
+            <div class="map-caption">Bennogasse 23, 1080 Wien - nahe U6 Alser Straße</div>
           </div>
         </div>
       </section>
@@ -739,7 +875,13 @@
 
     <div class="mobile-cta" aria-label="Schneller Kontakt">
       <a class="button call" href="tel:+4367763145376">Anrufen</a>
-      <a class="button primary" href="#termin">Termin</a>
+      <a
+        class="button whatsapp"
+        href="https://wa.me/4367763145376?text=Hallo%20Aiyi%20Massage%2C%20ich%20m%C3%B6chte%20gerne%20einen%20Termin%20anfragen."
+        target="_blank"
+        rel="noreferrer"
+        >WhatsApp</a
+      >
     </div>
 
     <footer>
@@ -751,6 +893,52 @@
 
     <script src="../shared/forms.js"></script>
     <script>
+      const bookingForm = document.querySelector("#booking-form");
+      const emailFallback = document.querySelector("#email-fallback");
+      const phoneNumber = "4367763145376";
+      const emailAddress = "monathaivienna@gmail.com";
+
+      bookingForm?.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(bookingForm);
+        if (formData.get("Website")) return;
+
+        const name = String(formData.get("Name") || "").trim();
+        const phone = String(formData.get("Telefon") || "").trim();
+        const massage = String(formData.get("Massage") || "").trim();
+        const wishTime = String(formData.get("Wunschzeit") || "").trim();
+        const message = [
+          "Hallo Aiyi Massage, ich möchte gerne einen Termin anfragen.",
+          "",
+          name ? `Name: ${name}` : "",
+          phone ? `Telefon: ${phone}` : "",
+          massage ? `Massage: ${massage}` : "",
+          wishTime ? `Wunschzeit: ${wishTime}` : "",
+        ]
+          .filter(Boolean)
+          .join("\n");
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+        const mailSubject = encodeURIComponent("Terminwunsch Aiyi Massage");
+        const mailBody = encodeURIComponent(message);
+        const status = bookingForm.querySelector(".form-status");
+
+        if (emailFallback) {
+          emailFallback.href = `mailto:${emailAddress}?subject=${mailSubject}&body=${mailBody}`;
+        }
+
+        window.open(whatsappUrl, "_blank", "noopener");
+
+        if (status) {
+          status.classList.add("visible");
+          status.innerHTML =
+            'WhatsApp wurde geöffnet. Falls es nicht klappt, bitte <a href="' +
+            `mailto:${emailAddress}?subject=${mailSubject}&body=${mailBody}` +
+            '">per E-Mail senden</a> oder direkt anrufen.';
+        }
+      });
+
       const revealItems = document.querySelectorAll("[data-reveal]");
 
       if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
