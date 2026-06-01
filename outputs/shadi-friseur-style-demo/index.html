@@ -1,0 +1,932 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shadi Friseur Style | Friseur & Barber in 1050 Wien</title>
+    <meta
+      name="description"
+      content="Shadi Friseur Style in 1050 Wien: Damen- und Herrenhaarschnitte, Bartpflege, Farbe, Styling und Termine nahe Kliebergasse."
+    />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="preconnect" href="https://api.mapbox.com" />
+    <style>
+      :root {
+        --ink: #181512;
+        --muted: #6b625b;
+        --paper: #fffaf4;
+        --surface: #ffffff;
+        --line: #e5dbd0;
+        --charcoal: #25211d;
+        --gold: #b98543;
+        --copper: #a45235;
+        --sage: #607665;
+        --blue: #31506d;
+        --shadow: 0 18px 60px rgba(31, 26, 20, 0.14);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--paper);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        line-height: 1.5;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 14px clamp(18px, 4vw, 54px);
+        background: rgba(255, 250, 244, 0.92);
+        border-bottom: 1px solid rgba(229, 219, 208, 0.78);
+        backdrop-filter: blur(16px);
+      }
+
+      .brand {
+        display: grid;
+        gap: 1px;
+        min-width: max-content;
+      }
+
+      .brand strong {
+        font-size: 1rem;
+        letter-spacing: 0;
+      }
+
+      .brand span {
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        gap: clamp(12px, 2vw, 28px);
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        padding: 11px 17px;
+        background: var(--charcoal);
+        color: #fff;
+        font-weight: 750;
+        white-space: nowrap;
+        transition:
+          transform 180ms ease,
+          background 180ms ease,
+          border-color 180ms ease;
+      }
+
+      .button:hover {
+        transform: translateY(-1px);
+        background: #111;
+      }
+
+      .button.secondary {
+        background: transparent;
+        border-color: rgba(37, 33, 29, 0.22);
+        color: var(--ink);
+      }
+
+      .button.secondary:hover {
+        background: #fff;
+      }
+
+      .button.treatwell {
+        background: #ff5c39;
+        color: #fff;
+      }
+
+      .button.treatwell:hover {
+        background: #e74b2b;
+      }
+
+      .hero {
+        min-height: 86vh;
+        display: grid;
+        align-items: end;
+        background:
+          linear-gradient(
+            90deg,
+            rgba(17, 15, 13, 0.78) 0%,
+            rgba(17, 15, 13, 0.54) 42%,
+            rgba(17, 15, 13, 0.2) 100%
+          ),
+          url("https://images.unsplash.com/photo-1512690459411-b9245aed614b?auto=format&fit=crop&w=2200&q=86")
+            center / cover;
+        color: #fff;
+      }
+
+      .hero-inner {
+        width: min(1160px, calc(100% - 36px));
+        margin: 0 auto;
+        padding: 92px 0 64px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        color: rgba(255, 255, 255, 0.84);
+        font-size: 0.86rem;
+        font-weight: 720;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        width: 38px;
+        height: 2px;
+        background: var(--gold);
+        content: "";
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 760px;
+        margin-bottom: 18px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(3.1rem, 9vw, 7.2rem);
+        line-height: 0.92;
+        letter-spacing: 0;
+      }
+
+      .hero p {
+        max-width: 590px;
+        margin-bottom: 28px;
+        color: rgba(255, 255, 255, 0.86);
+        font-size: clamp(1.05rem, 2vw, 1.28rem);
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .hero-actions .button.secondary {
+        border-color: rgba(255, 255, 255, 0.48);
+        color: #fff;
+      }
+
+      .hero-actions .button.secondary:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      main {
+        overflow: hidden;
+      }
+
+      section {
+        padding: clamp(64px, 9vw, 110px) clamp(18px, 4vw, 54px);
+      }
+
+      .section-inner {
+        width: min(1160px, 100%);
+        margin: 0 auto;
+      }
+
+      .section-heading {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(260px, 0.75fr);
+        gap: 34px;
+        align-items: end;
+        margin-bottom: 38px;
+      }
+
+      h2 {
+        margin-bottom: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(2.15rem, 4vw, 4rem);
+        line-height: 1;
+        letter-spacing: 0;
+      }
+
+      .section-heading p {
+        margin-bottom: 0;
+        color: var(--muted);
+      }
+
+      .services {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .service {
+        min-height: 245px;
+        display: grid;
+        align-content: end;
+        border-radius: 8px;
+        overflow: hidden;
+        background: var(--charcoal);
+        color: #fff;
+        box-shadow: var(--shadow);
+      }
+
+      .service:nth-child(1) {
+        background:
+          linear-gradient(rgba(20, 18, 16, 0.08), rgba(20, 18, 16, 0.84)),
+          url("https://images.pexels.com/photos/19239103/pexels-photo-19239103.jpeg?auto=compress&cs=tinysrgb&w=900")
+            center 42% / cover;
+      }
+
+      .service:nth-child(2) {
+        background:
+          linear-gradient(rgba(20, 18, 16, 0.1), rgba(20, 18, 16, 0.84)),
+          url("https://images.pexels.com/photos/12304514/pexels-photo-12304514.jpeg?auto=compress&cs=tinysrgb&w=900")
+            center 34% / cover;
+      }
+
+      .service:nth-child(3) {
+        background:
+          linear-gradient(rgba(20, 18, 16, 0.14), rgba(20, 18, 16, 0.84)),
+          url("https://images.pexels.com/photos/20894394/pexels-photo-20894394.jpeg?auto=compress&cs=tinysrgb&w=900")
+            center 48% / cover;
+      }
+
+      .service:nth-child(4) {
+        background:
+          linear-gradient(rgba(20, 18, 16, 0.1), rgba(20, 18, 16, 0.84)),
+          url("https://images.pexels.com/photos/14615061/pexels-photo-14615061.jpeg?auto=compress&cs=tinysrgb&w=900")
+            center 44% / cover;
+      }
+
+      .service-content {
+        padding: 22px;
+      }
+
+      .service h3 {
+        margin-bottom: 8px;
+        font-size: 1.16rem;
+      }
+
+      .service p {
+        margin-bottom: 0;
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 0.94rem;
+      }
+
+      .split {
+        background: #fff;
+      }
+
+      .split-grid {
+        display: grid;
+        grid-template-columns: minmax(300px, 0.92fr) minmax(320px, 1.08fr);
+        gap: clamp(28px, 6vw, 78px);
+        align-items: center;
+      }
+
+      .portrait {
+        aspect-ratio: 4 / 5;
+        border-radius: 8px;
+        object-fit: cover;
+        box-shadow: var(--shadow);
+      }
+
+      .copy h2 {
+        margin-bottom: 20px;
+      }
+
+      .copy p {
+        color: var(--muted);
+      }
+
+      .proof {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-top: 26px;
+      }
+
+      .proof-item {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 16px;
+        background: #fffaf4;
+      }
+
+      .proof-item strong {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 1.3rem;
+      }
+
+      .proof-item span {
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      .prices {
+        background: #eef2ee;
+      }
+
+      .price-list {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .price-card {
+        border: 1px solid rgba(96, 118, 101, 0.22);
+        border-radius: 8px;
+        padding: 24px;
+        background: #fff;
+      }
+
+      .price-card h3 {
+        margin-bottom: 18px;
+        font-size: 1.2rem;
+      }
+
+      .line-item {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 13px 0;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+      }
+
+      .line-item strong {
+        color: var(--ink);
+        font-size: 1rem;
+      }
+
+      .gallery {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr 0.8fr;
+        grid-auto-rows: 245px;
+        gap: 14px;
+      }
+
+      .gallery img {
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        object-fit: cover;
+      }
+
+      .gallery img:first-child {
+        grid-row: span 2;
+      }
+
+      .booking {
+        background: var(--charcoal);
+        color: #fff;
+      }
+
+      .booking-grid {
+        display: grid;
+        grid-template-columns: minmax(280px, 0.85fr) minmax(300px, 1fr);
+        gap: clamp(26px, 5vw, 68px);
+        align-items: center;
+      }
+
+      .booking p {
+        color: rgba(255, 255, 255, 0.76);
+      }
+
+      .booking-panel {
+        border-radius: 8px;
+        padding: clamp(20px, 4vw, 30px);
+        background: #fff;
+        color: var(--ink);
+      }
+
+      .booking-note {
+        margin: 0 0 18px;
+        padding: 15px 16px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 92, 57, 0.28);
+        background: #fff7e8;
+        color: #3f2b1f;
+        font-size: 0.97rem;
+        font-weight: 650;
+      }
+
+      .booking .booking-note {
+        color: #3f2b1f;
+      }
+
+      .form-status {
+        display: none;
+        margin: 2px 0 0;
+        color: var(--sage);
+        font-size: 0.94rem;
+        font-weight: 720;
+      }
+
+      .form-status.visible {
+        display: block;
+      }
+
+      form {
+        display: grid;
+        gap: 14px;
+      }
+
+      .field-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      label {
+        display: grid;
+        gap: 7px;
+        color: var(--muted);
+        font-size: 0.88rem;
+        font-weight: 700;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        min-height: 46px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 11px 12px;
+        color: var(--ink);
+        background: #fffaf4;
+        font: inherit;
+      }
+
+      textarea {
+        min-height: 98px;
+        resize: vertical;
+      }
+
+      .contact {
+        padding-bottom: 44px;
+        background: #fff;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: minmax(280px, 0.82fr) minmax(320px, 1.18fr);
+        gap: 22px;
+      }
+
+      .contact-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 24px;
+        background: var(--paper);
+      }
+
+      .contact-card p {
+        margin-bottom: 10px;
+        color: var(--muted);
+      }
+
+      .contact-card strong {
+        color: var(--ink);
+      }
+
+      .external-proof {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .map {
+        min-height: 360px;
+        border: 0;
+        border-radius: 8px;
+        filter: saturate(0.92) contrast(0.96);
+      }
+
+      footer {
+        padding: 24px clamp(18px, 4vw, 54px);
+        background: #fff;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .footer-inner {
+        width: min(1160px, 100%);
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        margin: 0 auto;
+      }
+
+      @media (max-width: 920px) {
+        nav a:not(.button) {
+          display: none;
+        }
+
+        .section-heading,
+        .split-grid,
+        .booking-grid,
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .services,
+        .price-list {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .gallery {
+          grid-template-columns: 1fr 1fr;
+          grid-auto-rows: 210px;
+        }
+      }
+
+      @media (max-width: 620px) {
+        .topbar {
+          align-items: flex-start;
+        }
+
+        .brand span {
+          max-width: 180px;
+        }
+
+        .topbar .button {
+          min-height: 40px;
+          padding: 9px 12px;
+          font-size: 0.9rem;
+        }
+
+        .hero {
+          min-height: 80vh;
+        }
+
+        .hero-inner {
+          padding-top: 76px;
+        }
+
+        .hero-actions,
+        .field-row,
+        .footer-inner {
+          flex-direction: column;
+          grid-template-columns: 1fr;
+        }
+
+        .hero-actions .button,
+        .booking-panel .button {
+          width: 100%;
+        }
+
+        .services,
+        .price-list,
+        .proof,
+        .gallery {
+          grid-template-columns: 1fr;
+        }
+
+        .gallery {
+          grid-auto-rows: 240px;
+        }
+
+        .gallery img:first-child {
+          grid-row: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#start" aria-label="Shadi Friseur Style Startseite">
+        <strong>Shadi Friseur Style</strong>
+        <span>Friseur & Barber in Wien Margareten</span>
+      </a>
+      <nav aria-label="Hauptnavigation">
+        <a href="#leistungen">Leistungen</a>
+        <a href="#preise">Preise</a>
+        <a href="#kontakt">Kontakt</a>
+        <a
+          class="button treatwell"
+          href="https://www.treatwell.at/ort/shadi-friseur-style/"
+          target="_blank"
+          rel="noreferrer"
+          >Treatwell</a
+        >
+      </nav>
+    </header>
+
+    <main id="start">
+      <section class="hero" aria-label="Shadi Friseur Style">
+        <div class="hero-inner">
+          <div class="eyebrow">Kliebergasse 3, 1050 Wien</div>
+          <h1>Shadi Friseur Style</h1>
+          <p>
+            Präzise Schnitte, saubere Bartkonturen, Farbe und Styling in einer
+            ruhigen Salonatmosphäre nahe Matzleinsdorfer Platz.
+          </p>
+          <div class="hero-actions">
+            <a
+              class="button treatwell"
+              href="https://www.treatwell.at/ort/shadi-friseur-style/"
+              target="_blank"
+              rel="noreferrer"
+              >Treatwell-Profil öffnen</a
+            >
+            <a class="button secondary" href="tel:+436607409991">0660 740 9991</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="leistungen">
+        <div class="section-inner">
+          <div class="section-heading">
+            <h2>Haare, Bart und Farbe mit ruhiger Hand.</h2>
+            <p>
+              Vom schnellen Herrenhaarschnitt bis zum kompletten Look: Das
+              Angebot ist klar, persönlich und auf den Alltag in Wien abgestimmt.
+            </p>
+          </div>
+
+          <div class="services">
+            <article class="service">
+              <div class="service-content">
+                <h3>Damenhaarschnitt</h3>
+              <p>Beratung, Schnitt, Föhnen und Finish für natürliche Bewegung.</p>
+              </div>
+            </article>
+            <article class="service">
+              <div class="service-content">
+                <h3>Barber</h3>
+                <p>Fade, Konturen, Bartpflege und sauberer klassischer Schnitt.</p>
+              </div>
+            </article>
+            <article class="service">
+              <div class="service-content">
+                <h3>Coloration</h3>
+                <p>Farbe, Strähnen und typgerechte Veränderung.</p>
+              </div>
+            </article>
+            <article class="service">
+              <div class="service-content">
+                <h3>Styling</h3>
+                <p>Föhnen, Hochstecken und Looks für besondere Termine.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="split">
+        <div class="section-inner split-grid">
+          <img
+            class="portrait"
+            src="https://images.unsplash.com/photo-1620331311520-246422fd82f9?auto=format&fit=crop&w=1200&q=86"
+            alt="Friseur schneidet Haare im Salon"
+          />
+          <div class="copy">
+            <h2>Ein Salon, der nach Stammplatz aussieht.</h2>
+            <p>
+              Shadi Friseur Style verbindet sauberes Handwerk mit unkomplizierter
+              Beratung. Kundinnen und Kunden kommen für verlässliche Schnitte,
+              klare Empfehlungen und eine Atmosphäre, in der man gern wiederkommt.
+            </p>
+            <p>
+              Der Standort liegt nur wenige Schritte von Bus und Straßenbahn
+              Kliebergasse entfernt und ist damit auch nach der Arbeit gut
+              erreichbar.
+            </p>
+            <div class="proof" aria-label="Bewertungen und Vorteile">
+              <div class="proof-item">
+                <strong>4,8</strong>
+                <span>Bewertung auf Treatwell</span>
+              </div>
+              <div class="proof-item">
+                <strong>96+</strong>
+                <span>verifizierte Treatwell-Bewertungen</span>
+              </div>
+              <div class="proof-item">
+                <strong>1050</strong>
+                <span>zentral in Margareten</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="preise" class="prices">
+        <div class="section-inner">
+          <div class="section-heading">
+            <h2>Beliebte Services</h2>
+            <p>
+              Preise können je nach Haarlänge, Aufwand und Beratung variieren.
+              Der genaue Preis wird vor Beginn besprochen.
+            </p>
+          </div>
+          <div class="price-list">
+            <article class="price-card">
+              <h3>Herren</h3>
+              <div class="line-item"><span>Herrenhaarschnitt</span><strong>ab €30</strong></div>
+              <div class="line-item"><span>Haarschnitt & Bart</span><strong>ab €45</strong></div>
+              <div class="line-item"><span>Waschen & Schneiden</span><strong>ab €30</strong></div>
+            </article>
+            <article class="price-card">
+              <h3>Damen</h3>
+              <div class="line-item"><span>Waschen & Schneiden</span><strong>ab €45</strong></div>
+              <div class="line-item"><span>Föhnen</span><strong>ab €30</strong></div>
+              <div class="line-item"><span>Hochsteckfrisur</span><strong>ab €60</strong></div>
+            </article>
+            <article class="price-card">
+              <h3>Farbe & Extras</h3>
+              <div class="line-item"><span>Coloration</span><strong>nach Aufwand</strong></div>
+              <div class="line-item"><span>Strähnen</span><strong>nach Beratung</strong></div>
+              <div class="line-item"><span>Augenbrauen</span><strong>ab €15</strong></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="Salon Impressionen">
+        <div class="section-inner">
+          <div class="gallery">
+            <img
+              src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1300&q=86"
+              alt="Haarschnitt im Friseursalon"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=900&q=86"
+              alt="Barber schneidet Herrenhaar"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1522338242992-e1a54906a8da?auto=format&fit=crop&w=900&q=86"
+              alt="Coloration und Styling im Salon"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=900&q=86"
+              alt="Barber Arbeitsplatz mit Spiegel"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=900&q=86"
+              alt="Friseur föhnt und stylt Haare"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section id="termin" class="booking">
+        <div class="section-inner booking-grid">
+          <div>
+            <div class="eyebrow">Termin</div>
+            <h2>Ein guter Schnitt beginnt mit einem freien Slot.</h2>
+            <p>
+              Wählen Sie den passenden Service und senden Sie Ihre Wunschzeit.
+              Für kurzfristige Termine ist der Salon auch telefonisch erreichbar.
+            </p>
+            <div class="hero-actions">
+              <a
+                class="button treatwell"
+                href="https://www.treatwell.at/ort/shadi-friseur-style/"
+                target="_blank"
+                rel="noreferrer"
+                >Auf Treatwell ansehen</a
+              >
+              <a class="button secondary" href="tel:+436607409991">Jetzt anrufen</a>
+              <a
+                class="button secondary"
+                href="https://www.google.com/maps/search/?api=1&query=Kliebergasse%203%201050%20Wien"
+                target="_blank"
+                rel="noreferrer"
+                >Route öffnen</a
+              >
+            </div>
+          </div>
+          <div class="booking-panel">
+            <p class="booking-note">
+              Für Farbe, Strähnen oder größere Veränderungen bitte kurz Haarlänge
+              und Wunschlook ergänzen.
+            </p>
+            <form id="booking-form" action="#termin" method="get">
+              <div class="field-row">
+                <label>
+                  Name
+                  <input name="Name" autocomplete="name" required />
+                </label>
+                <label>
+                  Telefon
+                  <input name="Telefon" autocomplete="tel" inputmode="tel" required />
+                </label>
+              </div>
+              <div class="field-row">
+                <label>
+                  Service
+                  <select name="Service">
+                    <option>Herrenhaarschnitt</option>
+                    <option>Haarschnitt & Bart</option>
+                    <option>Damenhaarschnitt</option>
+                    <option>Farbe oder Strähnen</option>
+                    <option>Styling</option>
+                  </select>
+                </label>
+                <label>
+                  Wunschzeit
+                  <input name="Wunschzeit" placeholder="z. B. Freitag 16:00" />
+                </label>
+              </div>
+              <label>
+                Nachricht
+                <textarea name="Nachricht" placeholder="Haarlänge, Wunsch oder Frage"></textarea>
+              </label>
+              <button class="button" type="submit">Terminwunsch senden</button>
+              <p id="form-status" class="form-status" role="status">
+                Danke, der Terminwunsch wurde vorgemerkt. Der Salon meldet sich zur Bestätigung telefonisch.
+              </p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section id="kontakt" class="contact">
+        <div class="section-inner contact-grid">
+          <div class="contact-card">
+            <h2>Besuch in der Kliebergasse</h2>
+            <p><strong>Adresse</strong><br />Kliebergasse 3, 1050 Wien</p>
+            <p><strong>Telefon</strong><br /><a href="tel:+436607409991">0660 740 9991</a></p>
+            <p>
+              <strong>Öffnungszeiten</strong><br />
+              Mo bis Do 09:30 bis 19:00<br />
+              Fr 09:15 bis 19:00<br />
+              Sa 09:30 bis 18:00
+            </p>
+            <div class="external-proof">
+              <a
+                class="button treatwell"
+                href="https://www.treatwell.at/ort/shadi-friseur-style/"
+                target="_blank"
+                rel="noreferrer"
+                >Treatwell-Profil</a
+              >
+              <a class="button secondary" href="#termin">Termin anfragen</a>
+            </div>
+          </div>
+          <iframe
+            class="map"
+            title="Karte zu Shadi Friseur Style"
+            src="https://www.google.com/maps?q=Kliebergasse%203%201050%20Wien&output=embed"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <span>© 2026 Shadi Friseur Style</span>
+        <span>Friseur, Barber und Styling in Wien Margareten</span>
+      </div>
+    </footer>
+    <script>
+      const bookingForm = document.querySelector("#booking-form");
+      const formStatus = document.querySelector("#form-status");
+
+      bookingForm?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        formStatus?.classList.add("visible");
+      });
+    </script>
+  </body>
+</html>
